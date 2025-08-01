@@ -1,0 +1,25 @@
+Mata Kuliah: Sistem Operasi
+Semester: Genap / Tahun Ajaran 2024–2025
+Nama: Kavina Reyna Riyadi
+NIM: 240202909
+Modul yang Dikerjakan:
+Modul 1 – System Call dan Instrumentasi Kernel
+
+Deskripsi singkat
+pada modul ini saya menambahkan 2 system call baru ke xv6-public:
+1. getpinfo: untuk mengambil informasi proses aktif (PID, size, dan nama)
+2. getreadcount: untuk mengambil jumlah total pemanggilan read() sejak sistem boot
+
+Rincian Implementasi
+1. Menambahkan struktur struct pinfo pada file proc.h untuk menyimpan informasi proses
+2. Menambahkan counter global readcount di sysproc.c dan memodifikasi fungsi sys_read() di sysfile.c untuk meningkatkannya setiap kali read() dipanggil
+3. Menambahkan system call baru di file syscall.c, syscall.h, user.h dan usys.S
+4. Membuat ptest.c untuk menguji getpinfo() dan rtest untuk menguji getReadCount()
+
+Uji Fungsionalitas
+1. ptest: mencetak daftar proses aktif beserta PID, ukuran memori, dan nama proses
+
+2. rtest: menampilkan jumlah read() sebelum dan sesudah melakukan pemanggilan read()
+
+Kendala yang dihadapi
+1. file ptest dan rtest tidak muncul 
