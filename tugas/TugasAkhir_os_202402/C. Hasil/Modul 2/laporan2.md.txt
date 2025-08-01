@@ -1,0 +1,32 @@
+Mata Kuliah: Sistem Operasi
+Semester: Genap / Tahun Ajaran 2024–2025
+Nama: Kavina Reyna Riyadi
+NIM: 240202909
+Modul yang Dikerjakan:
+Modul 2 – Penjadwalan CPU Lanjutan (Non-Preemptive Priority Scheduling)
+
+Deskripsi singkat
+Modul ini mengubah algoritma penjadwalan yang awalnya round robin menjadi priority scheduling non-preemptive
+tujuannya untuk menambah fiel priority ke setiap proses, memastikan prsoes dengan prioritas tertinggi yang dapat dijalankan,
+menambah syscall set_priority(int) agar proses bisa menetapkan prioritasnya sendiri
+
+Rincian Implementasi
+Langkah-langkah implementasi:
+1. Menambahkan field int priority pada struct proc di proc.h
+2. Inisialisasi default priority = 60 di allocproc()
+3. Implementasi syscall baru set_priority(int):
+4. Deklarasi di syscall.h, user.h, dan usys.S
+5. Registrasi di syscall.c
+6. Definisi fungsi di sysproc.c
+7. Modifikasi fungsi scheduler() di proc.c:
+8. Seleksi proses RUNNABLE dengan priority terkecil
+9. Non-preemptive: hanya satu proses jalan sampai selesai/yield
+10. Menulis program uji ptest.c untuk menguji bahwa proses dengan prioritas tinggi dieksekusi lebih dahulu
+
+Uji Fungsionalitas
+Membuat ptest.c: Membuat dua child process dengan prioritas berbeda (90 dan 10), lalu memverifikasi bahwa proses dengan prioritas lebih tinggi (10) selesai terlebih dahulu.
+
+Kendala yang dihadapi
+1. Salah membandingkan p->priority > highest->priority (harusnya <) di scheduler
+2. child 1 muncul sebelum child 2
+3. setelah perintah make qeemu-nox terjadi panic dan terminal blank
